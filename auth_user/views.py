@@ -78,49 +78,48 @@ class LoginUserView(GenericAPIView):
       
 
 
-from rest_framework_simplejwt.tokens import AccessToken
-from rest_framework.exceptions import AuthenticationFailed
-class LogoutUserView(GenericAPIView):
-   serializer_class = CustomTokenSerializer
+# from rest_framework_simplejwt.tokens import AccessToken
+# from rest_framework.exceptions import AuthenticationFailed
+# class LogoutUserView(GenericAPIView):
+#    serializer_class = CustomTokenSerializer
 
 
-   def get(self, request, *args, **kwargs):
+#    def get(self, request, *args, **kwargs):
    
-      try:
-         serializer = self.get_serializer(data=request.data)
-         serializer.is_valid(raise_exception=True)
+#       try:
+#          serializer = self.get_serializer(data=request.data)
+#          serializer.is_valid(raise_exception=True)
          
          
-         # Decodifica y valida el token
-         access_token = AccessToken(token)
-         # Puedes acceder a los datos del usuario en `access_token['user_id']`, etc.
-         raise AuthenticationFailed("Token inválido o expirado")
+#          # Decodifica y valida el token
+#          access_token = AccessToken(token)
+#          # Puedes acceder a los datos del usuario en `access_token['user_id']`, etc.
+#          raise AuthenticationFailed("Token inválido o expirado")
          
-         return access_token
+#          return access_token
       
 
-      except serializers.ValidationError as e:
-         return Response({
-            "message": "Datos invalidos",
-            "error": e.detail
-         }, status=status.HTTP_400_BAD_REQUEST)
-      except AuthenticationFailed as e:
-         return Response({
-            "message": "Token inválido o expirado",
-         }, status=status.HTTP_401_UNAUTHORIZED)
-      except Exception as e:   
-         return Response({
-            "message": "Ocurrio un error inesperado",
-            "error": str(e)
-         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#       except serializers.ValidationError as e:
+#          return Response({
+#             "message": "Datos invalidos",
+#             "error": e.detail
+#          }, status=status.HTTP_400_BAD_REQUEST)
+#       except AuthenticationFailed as e:
+#          return Response({
+#             "message": "Token inválido o expirado",
+#          }, status=status.HTTP_401_UNAUTHORIZED)
+#       except Exception as e:   
+#          return Response({
+#             "message": "Ocurrio un error inesperado",
+#             "error": str(e)
+#          }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-
-def validate_token(token):
-    try:
-        # Decodifica y valida el token
-        access_token = AccessToken(token)
-        # Puedes acceder a los datos del usuario en `access_token['user_id']`, etc.
-        return access_token
-    except Exception as e:
-        raise AuthenticationFailed("Token inválido o expirado")
+# def validate_token(token):
+#     try:
+#         # Decodifica y valida el token
+#         access_token = AccessToken(token)
+#         # Puedes acceder a los datos del usuario en `access_token['user_id']`, etc.
+#         return access_token
+#     except Exception as e:
+#         raise AuthenticationFailed("Token inválido o expirado")
